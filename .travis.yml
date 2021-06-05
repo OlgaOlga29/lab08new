@@ -6,6 +6,7 @@ script:
 - cmake -H. -B_build -DCPACK_GENERATOR="DEB"
 - cmake --build _build --target package
 
+
 addons:
   apt:
     sources:
