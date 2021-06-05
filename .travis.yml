@@ -1,9 +1,10 @@
 language: cpp
 
 script:
-- cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install
-- cmake --build _build
-- cmake --build _build --target install
+- cmake -H. -B_build -DCPACK_GENERATOR="TGZ"
+- cmake --build _build --target package
+- cmake -H. -B_build -DCPACK_GENERATOR="DEB"
+- cmake --build _build --target package
 
 addons:
   apt:
