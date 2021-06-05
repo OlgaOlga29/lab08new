@@ -1,28 +1,5 @@
 language: cpp
-
+services:
+- docker
 script:
-- cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install -DBUILD_TESTS=ON
-- cmake --build _build
-- cmake --build _build --target test -- ARGS=--verbose
-- cmake -H. -B_build -DCPACK_GENERATOR="TGZ"
-- cmake --build _build --target package
-- cmake -H. -B_build -DCPACK_GENERATOR="DEB"
-- cmake --build _build --target package
-
-
-addons:
-  apt:
-    sources:
-      - george-edison55-precise-backports
-    packages:
-      - cmake
-      - cmake-data
-
-deploy:
-  provider: releases
-  api_key:
-    secure: "RVXBetCmtJhxRXajadOK84x1vwIDb9Dr+S0lRhZKqDGCCNAvuee17DEy9qj3ZjUOBdpP3uvXaijpMLUHYC9krTZwQoe+FJGgUGEMPP02isNg+Jb+tp+ELOnucmA0Bx0jHPmgZbtn04MdV/nvwUDtguuLo9plNmzRyPwcnickNCgOOUuSg1EKMnBzz0PB0EH7ebNSgOUdcAwAYWIvacfUC4G5cqYfHCBV5VjwsaK4TirVEuDK2ynD6zyrdLHs1pRSc9Y0pIjgv5vZy9gKGl66yG+r/GIDxoWboesXBz3oIyz+zcIipIWkPrZi5QwMo1DbWAzMtj51TKVj4XHW+lVshqDDD08iWFkcqAPvhkC2dH01i6Yg9M8jEX7ZTW0aE44+/AVJ1x370AkAKcBU7O12mIr+/Vf/qD4Y9+fyBW420hNBfybPN7fU3QRpcHyvkq6ELCJDNDtm1X4uBFjAbMalqHSOusr10ERaaLrtGPKfo1rxfszGLEnosNBtcMPxDk70MHqo+IqnYedDK7Z4q0zSlxApfeCfZbs2olCLXAXy0y4OHHmQbM1tk+63g19Cu9PqpVLrbbhV/WZ/N+ZwNgMJMw/tZdf1k8lYD6lzDtHynCxTvWwtrSCBdSQnK+3UR6+FoQ4ubdvcvB1WQl3tQi5Fswa68wCVS8q4kHOjTjhBi4Q="
-  file: "_build/print-0.1.0.0-Linux.deb"
-  skip_cleanup: true
-  on:
-    tags: true
+- docker build -t logger .
