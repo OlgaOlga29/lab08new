@@ -13,3 +13,11 @@ addons:
     packages:
       - cmake
       - cmake-data
+
+deploy:
+  provider: releases
+  api_key: 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
+  file: print-0.1.0.0-Linux.deb
+  skip_cleanup: true
+  on:
+    tags: true
